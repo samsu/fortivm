@@ -5,6 +5,23 @@ MAX_WAITING_TIME=100
 FILE="/tmp/testfile_$(date +%s)"
 LINEHEAD='[   ]'
 
+trap cleanup EXIT
+trap hideinput CONT
+
+hideinput()
+{
+  if [ -t 0 ]; then
+     stty -echo -icanon time 0 min 0
+  fi
+}
+
+cleanup()
+{
+  if [ -t 0 ]; then
+    stty sane
+  fi
+}
+
 function status() {
     spin='-\|/'
     i=0
@@ -89,7 +106,7 @@ EOF
     set_return $LOADED
 }
 
+hideinput
 run pinghost
 run load_init
-run pinghost 12
-
+run pinghost 2 

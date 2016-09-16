@@ -104,7 +104,7 @@ y
 exit
 "
 #echo "$A"
-    printf "${LINEHEAD} Load initial configure to the host [ ${FGT_HOST} ]."
+    printf "${LINEHEAD} Load the initial configure to the host [ ${FGT_HOST} ]."
     ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -tt admin@${FGT_HOST} <<EOF >/dev/null 2>&1 &
 $A
 EOF

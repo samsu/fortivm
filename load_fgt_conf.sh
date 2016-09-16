@@ -6,6 +6,7 @@ FILE="/tmp/testfile_$(date +%s)"
 LINEHEAD='[   ]'
 
 trap cleanup EXIT
+trap terminate SIGINT 
 trap hideinput CONT
 
 hideinput()
@@ -20,6 +21,13 @@ cleanup()
   if [ -t 0 ]; then
     stty sane
   fi
+}
+
+terminate()
+{
+    cleanup
+    print_fail
+    exit 1
 }
 
 function status() {
@@ -109,4 +117,4 @@ EOF
 hideinput
 run pinghost
 run load_init
-run pinghost 2 
+run pinghost 10 

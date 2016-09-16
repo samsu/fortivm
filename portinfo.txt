@@ -1,0 +1,91 @@
+[root@centos7-7 fortivm]# ovs-ofctl show br-int
+OFPT_FEATURES_REPLY (xid=0x2): dpid:0000e6c2e295914e
+n_tables:254, n_buffers:256
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS QUEUE_STATS ARP_MATCH_IP
+actions: output enqueue set_vlan_vid set_vlan_pcp strip_vlan mod_dl_src mod_dl_dst mod_nw_src mod_nw_dst mod_nw_tos mod_tp_src mod_tp_dst
+ 1(qvo93095522-ab): addr:de:c6:1d:90:99:23
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 2(qvoa657dec0-e7): addr:72:85:59:f4:aa:d1
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 482(patch-tun): addr:52:7c:7f:0e:89:f9
+     config:     0
+     state:      0
+     speed: 0 Mbps now, 0 Mbps max
+ 483(fgt-int-port): addr:fe:54:00:fe:34:85
+     config:     0
+     state:      0
+     current:    10MB-FD COPPER
+     speed: 10 Mbps now, 0 Mbps max
+ LOCAL(br-int): addr:e6:c2:e2:95:91:4e
+     config:     PORT_DOWN
+     state:      LINK_DOWN
+     speed: 0 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
+
+
+[root@centos7-7 fortivm]# ovs-vsctl list interface fgt-int-port
+_uuid               : 1ddae230-de67-465f-b67e-1ed7bd4a54fd
+admin_state         : up
+bfd                 : {}
+bfd_status          : {}
+cfm_fault           : []
+cfm_fault_status    : []
+cfm_flap_count      : []
+cfm_health          : []
+cfm_mpid            : []
+cfm_remote_mpids    : []
+cfm_remote_opstate  : []
+duplex              : full
+error               : []
+external_ids        : {attached-mac="52:54:00:fe:34:85", iface-id="9d590d5e-7545-4831-9c4b-32cb0790adfb", iface-status=active, vm-id="62346cbd-2bbf-4d42-a79a-12345567890a"}
+ifindex             : 469
+ingress_policing_burst: 0
+ingress_policing_rate: 0
+lacp_current        : []
+link_resets         : 1
+link_speed          : 10000000
+link_state          : up
+lldp                : {}
+mac                 : []
+mac_in_use          : "fe:54:00:fe:34:85"
+mtu                 : 1500
+name                : fgt-int-port
+ofport              : 483
+ofport_request      : []
+options             : {}
+other_config        : {}
+statistics          : {collisions=0, rx_bytes=0, rx_crc_err=0, rx_dropped=0, rx_errors=0, rx_frame_err=0, rx_over_err=0, rx_packets=0, tx_bytes=5928, tx_dropped=0, tx_errors=0, tx_packets=24}
+status              : {driver_name=tun, driver_version="1.6", firmware_version=""}
+type                : ""
+[root@centos7-7 fortivm]# 
+
+
+[root@centos7-7 fortivm]# ovs-vsctl list port fgt-int-port
+_uuid               : f0d1fb62-96d7-4872-9633-8891ed0f58e5
+bond_active_slave   : []
+bond_downdelay      : 0
+bond_fake_iface     : false
+bond_mode           : []
+bond_updelay        : 0
+external_ids        : {}
+fake_bridge         : false
+interfaces          : [1ddae230-de67-465f-b67e-1ed7bd4a54fd]
+lacp                : []
+mac                 : []
+name                : fgt-int-port
+other_config        : {}
+qos                 : []
+rstp_statistics     : {}
+rstp_status         : {}
+statistics          : {}
+status              : {}
+tag                 : []
+trunks              : []
+vlan_mode           : []
+

@@ -3,7 +3,7 @@ FTP_SERVER=10.160.37.57
 
 MAX_WAITING_TIME=100
 FILE="/tmp/testfile_$(date +%s)"
-LINEHEAD='[   ]'
+HEADSTYLE='[   ]'
 
 trap cleanup EXIT
 trap terminate SIGINT 
@@ -79,7 +79,7 @@ function pinghost() {
     PINGABLE=False
     start=$SECONDS
     duration=$(( SECONDS - start ))    
-    printf "${LINEHEAD} Checking the connectivity of the host [ ${FGT_HOST} ]."
+    printf "${HEADSTYLE} Checking the connectivity of the host [ ${FGT_HOST} ]."
     if [ ! -z $1 ];then
         sleep $1
     fi
@@ -104,7 +104,7 @@ y
 exit
 "
 #echo "$A"
-    printf "${LINEHEAD} Load the initial configure to the host [ ${FGT_HOST} ]."
+    printf "${HEADSTYLE} Load the initial configure to the host [ ${FGT_HOST} ]."
     ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -tt admin@${FGT_HOST} <<EOF >/dev/null 2>&1 &
 $A
 EOF
